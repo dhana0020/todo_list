@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO_LIST</title>
+</head>
+
+<body style="background-image:url('image.jpg');">
+    <center>
+        <h1 style="font-family: cursive; 
+                    font-size: 36px;
+                    font-weight: bold;">TODO LIST</h1>
+        <br>
+
+        <h2 style="font-family: cursive;animation: tinyShake 0.4s infinite;"> Time to get things done 🎯</h2>
+    </center>
+    <br>
+    <br>
+    <center><input id="one" style="padding: 20px;
+    border-radius: 20px;
+    background-color: transparent ; width:300px;font-size: medium;" placeholder="Let's add the thing you wanna do">
+        <button onclick="todo()" style="margin-left:5%;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background-color: rgb(170, 9, 9);
+            color: white;
+            border-radius: 10px;">add</button>
+    </center>
+    <div class="main" >
+
+        <div class="table_div">
+            <h3>Things to do 📌</h3>
+            <table class="tab" style=" border-collapse: separate;border-spacing:90px 0px;">
+
+
+
+                <tr>
+                    <td></td>
+                    <td style="padding-left:6%"></td>
+                </tr>
+            </table>
+        </div>
+        <!-- <input type="checkbox"> -->
+
+
+        <div class="div-container">
+            <h3 style="color:rgba(6, 5, 5, 0.818) ;font-family: cursive;font-weight: bold;">Recently completed 🎉
+            </h3>
+            <ul class="div_ul">
+
+
+            </ul>
+        </div>
+    </div>
+    <br>
+    <button onclick="clr()"
+        style="margin-left:90%;border-radius: 10px;padding: 10px;background-color: transparent;color: rgb(75, 6, 20);">Clear
+        History</button>
+
+
+
+
+
+    <script>
+        var table = document.querySelector("table")
+        var input = document.getElementById("one")
+        var div_ul = document.querySelector(".div_ul")
+        function todo() {
+            var row = document.createElement("tr")
+
+            row.innerHTML = "<td> <input type=\"checkbox\" onchange=\"hist(event)\" class=\"checkboxstyle\"></td>" + "<td>" + input.value + "</td>"
+            console.log(row.innerHTML)
+            table.append(row)
+        }
+        function hist(event) {
+            var row = event.target.parentElement.parentElement
+            var list = document.createElement("li")
+            list.textContent = event.target.parentElement.parentElement.textContent
+            console.log(event.target.parentElement.parentElement)
+            div_ul.append(list)
+            row.remove()
+        }
+
+
+        function clr() {
+            document.querySelector(".div_ul").innerHTML = ""
+
+
+        }
+
+    </script>
+</body>
+
+</html>
+<style>
+    .div_ul {
+        list-style-type: none;
+    }
+
+    .div_ul li::before {
+        content: "🎀";
+    }
+
+    .div-container {
+        background-color: rgba(255, 255, 255, 0.6);
+        /* light cloud effect */
+        padding: 10px;
+        margin-top: 40px;
+        width: 40%;
+        border-radius: 30px;
+        /* soft cloud shape */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        /* subtle shadow */
+        font-family: cursive;
+        text-align: left;
+        /* backdrop-filter: blur(5px);  optional: for glassy look */
+    }
+
+    @keyframes tinyShake {
+        0% {
+            transform: translateX(0);
+        }
+
+        50% {
+            transform: translateX(2px);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    .table_div {
+        background-color: rgba(255, 255, 255, 0.6);
+        /* light cloud effect */
+        padding: 10px;
+        margin-top: 40px;
+        width: 40%;
+        border-radius: 30px;
+        /* soft cloud shape */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        /* subtle shadow */
+        font-family: cursive;
+        text-align: left;
+    }
+
+    .main {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        flex-basis: 40%;
+
+    }
+
+
+
+
+    .checkboxstyle {
+        height: 15px;
+        width: 15px;
+    }
+</style>
