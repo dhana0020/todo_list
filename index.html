@@ -74,6 +74,7 @@
             row.innerHTML = "<td> <input type=\"checkbox\" onchange=\"hist(event)\" class=\"checkboxstyle\"></td>" + "<td>" + input.value + "</td>"
             console.log(row.innerHTML)
             table.append(row)
+            input.value=""
         }
         function hist(event) {
             var row = event.target.parentElement.parentElement
